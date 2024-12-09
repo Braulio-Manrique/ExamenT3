@@ -37,4 +37,12 @@ public class ArchivoController {
         }
         return ResponseEntity.ok("Archivo subido exitosamente: " + archivo.getOriginalFilename());
     }
+    // Método para obtener la extensión del archivo
+    private String obtenerExtension(String nombreArchivo) {
+        if (nombreArchivo == null || !nombreArchivo.contains(".")) {
+            return "";
+        }
+        return nombreArchivo.substring(nombreArchivo.lastIndexOf(".") + 1).toLowerCase();
+    }
+
 }
