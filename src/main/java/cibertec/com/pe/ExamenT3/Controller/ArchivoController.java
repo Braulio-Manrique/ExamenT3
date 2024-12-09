@@ -23,5 +23,18 @@ public class ArchivoController {
         return ResponseEntity.ok("Archivos subidos exitosamente.");
     }
 
-
+    // 2. Subida de un único archivo con validación de tamaño
+    @PostMapping("/subir-unico")
+    public ResponseEntity<String> subirArchivoUnico(@RequestParam("archivo") MultipartFile archivo) {
+        if (archivo.getSize() > TAMANO_MAXIMO_MB) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("El archivo excede el tamaño máximo permitido de 25MB.");
+        }
+        String extension = obtenerExtension(archivo.getOriginalFilename());
+        if (!EXTENSIONES_VALIDAS.contains(extension)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Extensión no permitida. Solo se permiten: " + EXTENSIONES_VALIDAS);
+        }
+        return ResponseEntity.ok("Archivo subido exitosamente: " + archivo.getOriginalFilename());
+    }
 }
