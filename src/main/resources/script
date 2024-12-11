@@ -1,0 +1,38 @@
+CREATE DATABASE LIBRERIA
+USE LIBRERIA
+
+
+
+CREATE TABLE Autor
+(
+ IdAutor 		INT NOT NULL AUTO_INCREMENT,
+ NomAutor		VARCHAR(50) NOT NULL,
+ ApeAutor 		VARCHAR(50) NOT NULL,
+ FechNacAutor	DATE NOT NULL,
+ PRIMARY KEY (IdAutor)
+);
+
+CREATE TABLE Publicacion
+(
+ IdPublicacion 		INT NOT NULL AUTO_INCREMENT,
+ Titulo 			VARCHAR(250) NOT NULL,
+ Resumen 			VARCHAR(250) NOT NULL,
+ FechPublicacion	DATE NOT NULL,
+ IdAutor 			INT NOT NULL,
+ PRIMARY KEY (IdPublicacion),
+ FOREIGN KEY (IdAutor) REFERENCES Autor(IdAutor)
+ );
+
+ INSERT INTO Autor (NomAutor, ApeAutor, FechNacAutor)
+VALUES
+('Gabriel', 'García Márquez', '1927-03-06'),
+('Isabel', 'Allende', '1942-08-02'),
+('Jorge Luis', 'Borges', '1899-08-24');
+
+
+INSERT INTO Publicacion (Titulo, Resumen, FechPublicacion, IdAutor)
+VALUES
+('Cien años de soledad', 'Una obra maestra de realismo mágico.', '1967-05-30', 1),
+('La casa de los espíritus', 'Novela que mezcla lo político y lo fantástico.', '1982-01-01', 2),
+('Ficciones', 'Una colección de cuentos fascinantes y únicos.', '1944-05-01', 3);
+

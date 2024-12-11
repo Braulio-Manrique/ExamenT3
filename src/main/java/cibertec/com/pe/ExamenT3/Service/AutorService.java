@@ -10,4 +10,7 @@ public interface AutorService {
     Autor guardarAutor(Autor autor);
     Autor actualizarAutor(Integer id, Autor autor);
     void eliminarAutor(Integer id);
+
+
+
 }
